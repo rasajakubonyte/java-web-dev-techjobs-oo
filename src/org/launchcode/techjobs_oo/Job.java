@@ -6,6 +6,11 @@ public class Job {
     private static int nextId = 1;
 
     private String name;
+
+    public int getId() {
+        return id;
+    }
+
     private Employer employer;
     private Location location;
     private PositionType positionType;
