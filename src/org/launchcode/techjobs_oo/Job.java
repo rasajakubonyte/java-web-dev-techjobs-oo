@@ -1,19 +1,19 @@
 package org.launchcode.techjobs_oo;
+import  org.launchcode.techjobs_oo.JobField;
 
 import java.util.Objects;
 
 public class Job {
-
-    private int id;
+    public int id;
     private static int nextId = 1;
-    private String name;
+    public String name;
     public Job(){
         id=nextId;
         nextId++;
     }
-    public Job(String aName, String employer, String location, String positionType, String coreCompetency ){
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency){
         this();
-        this.name = aName;
+        this.name = name;
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
@@ -21,47 +21,51 @@ public class Job {
 
 
     }
+
     public int getId() {
         return id;
     }
 
     public String getName() {
-        return name;
+        if(name == null){
+            return "Data not available";
+        } else{
+        return name;}
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmployer() {
-        return employer;
-    }
+    public Employer getEmployer() {
 
-    public void setEmployer(String employer) {
+            return employer;
+        }
+    public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
-    }
+    };
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
-    public String getPositionType() {
+    public PositionType getPositionType() {
         return positionType;
-    }
+    };
 
-    public void setPositionType(String positionType) {
+    public void setPositionType(PositionType positionType) {
         this.positionType = positionType;
     }
 
-    public String getCoreCompetency() {
+    public CoreCompetency getCoreCompetency() {
         return coreCompetency;
-    }
+    };
 
-    public void setCoreCompetency(String coreCompetency) {
+    public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
 
@@ -78,11 +82,30 @@ public class Job {
         return Objects.hash(getId());
     }
 
-    private String employer;
-    private String location;
-    private String positionType;
-    private String coreCompetency;
+    private Employer employer;
+    private Location location;
+    private PositionType positionType;
+    private CoreCompetency coreCompetency;
 
+    @Override
+    public String toString() {
+        if (location.getValue() == null) {
+            location.setValue("Data not available");
+        }
+
+        String output = "\n" +
+                "Id: "+ id + "\n" +
+                "Name: " + name+ "\n"+
+                "Employer: " + employer + "\n"+
+                "Location: " + location +"\n"+
+                "Position Type: " + positionType + "\n"+
+                "Core Competency: " + coreCompetency+"\n";
+
+        return output;
+
+        }
+
+    };
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
@@ -92,4 +115,4 @@ public class Job {
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
-}
+
